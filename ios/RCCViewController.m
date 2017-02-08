@@ -761,6 +761,23 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
   [self.navigationController setNavigationBarHidden:[self.navigatorStyle[@"navBarHidden"] boolValue] animated:animated];
 }
 
+- (void)setBackSwipeGestureChange:(BOOL)enabled {
+  if (enabled == 0) {
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+  } else {
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+  }
+
+}
+
+- (void)setBackSwipeGestureChange:(BOOL)enabled {
+  if (enabled == 0) {
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+  } else {
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+  }
+
+}
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
