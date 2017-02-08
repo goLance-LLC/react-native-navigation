@@ -76,6 +76,10 @@ class Navigator {
     return platformSpecific.navigatorSetTitle(this, params);
   }
 
+  enableBackSwipeGesture(params = {}) {
+    return platformSpecific.navigatorEnableBackSwipeGesture(this, params);
+  }
+
   setSubTitle(params = {}) {
     return platformSpecific.navigatorSetSubtitle(this, params);
   }
