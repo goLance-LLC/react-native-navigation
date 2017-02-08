@@ -310,6 +310,10 @@ function navigatorSetTitle(navigator, params) {
   });
 }
 
+function navigatorEnableBackSwipeGesture(navigator, params) {
+  Controllers.NavigationControllerIOS(navigator.navigatorID).enableBackSwipeGesture(params.enable);
+}
+
 function navigatorSetTitleImage(navigator, params) {
   Controllers.NavigationControllerIOS(navigator.navigatorID).setTitleImage({
     titleImage: params.titleImage
@@ -524,7 +528,7 @@ function showInAppNotification(params) {
     navigatorEventID,
     navigatorID
   };
-  
+
   savePassProps(params);
 
   let args = {
@@ -602,5 +606,6 @@ export default {
   navigatorSwitchToTab,
   navigatorToggleNavBar,
   showContextualMenu,
-  dismissContextualMenu
+  dismissContextualMenu,
+  navigatorEnableBackSwipeGesture
 };

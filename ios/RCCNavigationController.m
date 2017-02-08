@@ -68,6 +68,11 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
 {
   BOOL animated = actionParams[@"animated"] ? [actionParams[@"animated"] boolValue] : YES;
   
+  // enable back swipe gesture
+  if ([performAction isEqualToString:@"enableBackSwipeGesture"]) {
+    [self setSwipeBackGesture:actionParams];
+  }
+  
   // push
   if ([performAction isEqualToString:@"push"])
   {
@@ -151,6 +156,7 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
   if ([performAction isEqualToString:@"pop"])
   {
     [self popViewControllerAnimated:animated];
+    [self setSwipeBackGesture:actionParams];
     return;
   }
   
@@ -158,6 +164,7 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
   if ([performAction isEqualToString:@"popToRoot"])
   {
     [self popToRootViewControllerAnimated:animated];
+    [self setSwipeBackGesture:actionParams];
     return;
   }
   
@@ -190,6 +197,7 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
     BOOL animated = actionParams[@"animated"] ? [actionParams[@"animated"] boolValue] : YES;
     
     [self setViewControllers:@[viewController] animated:animated];
+    [self setSwipeBackGesture:actionParams];
     return;
   }
   
@@ -250,6 +258,15 @@ NSString const *CALLBACK_ASSOCIATED_ID = @"RCCNavigationController.CALLBACK_ASSO
       [parent updateStyle];
     }
   }
+}
+
+-(void)setSwipeBackGesture: (NSDictionary*)actionParams
+{
+  NSNumber *enabled = actionParams[@"enable"];
+  BOOL enabledBool = enabled ? [enabled boolValue] : YES;
+  
+  RCCViewController *topViewController = ((RCCViewController*)self.topViewController);
+  [topViewController setBackSwipeGestureChange:enabledBool];
 }
 
 -(void)onButtonPress:(UIBarButtonItem*)barButtonItem
