@@ -215,6 +215,9 @@ var Controllers = {
       },
       setHidden: function(params = {}) {
         RCCManager.NavigationControllerIOS(id, "setHidden", params);
+      },
+      enableBackSwipeGesture: function (enable = true) {
+        RCCManager.NavigationControllerIOS(id, "enableBackSwipeGesture", {enable})
       }
     };
   },
@@ -325,4 +328,3 @@ var Controllers = {
 };
 
 module.exports = Controllers;
-
