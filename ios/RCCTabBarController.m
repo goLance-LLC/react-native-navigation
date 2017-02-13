@@ -20,7 +20,7 @@
   dispatch_async(queue, ^{
     [[[RCCManager sharedInstance].getBridge uiManager] configureNextLayoutAnimation:nil withCallback:^(NSArray* arr){} errorCallback:^(NSArray* arr){}];
   });
-  
+
   if (tabBarController.selectedIndex != [tabBarController.viewControllers indexOfObject:viewController]) {
     [RCCTabBarController sendScreenTabChangedEvent:viewController];
   }
@@ -117,6 +117,7 @@
     if (selectedIcon) iconImageSelected = [RCTConvert UIImage:selectedIcon];
 
     viewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:title image:iconImage tag:0];
+    if (title == nil) viewController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
     viewController.tabBarItem.accessibilityIdentifier = tabItemLayout[@"props"][@"testID"];
     viewController.tabBarItem.selectedImage = iconImageSelected;
     
@@ -247,11 +248,11 @@
 +(void)sendScreenTabChangedEvent:(UIViewController*)viewController {
   if ([viewController.view isKindOfClass:[RCTRootView class]]){
     RCTRootView *rootView = (RCTRootView *)viewController.view;
-    
+
     if (rootView.appProperties && rootView.appProperties[@"navigatorEventID"]) {
       NSString *navigatorID = rootView.appProperties[@"navigatorID"];
       NSString *screenInstanceID = rootView.appProperties[@"screenInstanceID"];
-      
+
       [[[RCCManager sharedInstance] getBridge].eventDispatcher sendAppEventWithName:rootView.appProperties[@"navigatorEventID"] body:@
        {
          @"id": @"bottomTabSelected",
@@ -260,7 +261,7 @@
        }];
     }
   }
-  
+
   if ([viewController isKindOfClass:[UINavigationController class]]) {
     UINavigationController *navigationController = (UINavigationController*)viewController;
     UIViewController *topViewController = [navigationController topViewController];
