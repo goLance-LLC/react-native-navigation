@@ -732,15 +732,6 @@ const NSInteger TRANSPARENT_NAVBAR_TAG = 78264803;
 
 }
 
-- (void)setBackSwipeGestureChange:(BOOL)enabled {
-  if (enabled == 0) {
-    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-  } else {
-    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-  }
-
-}
-
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
   if (self._statusBarTextColorSchemeLight){
