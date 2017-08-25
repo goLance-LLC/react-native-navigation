@@ -1,7 +1,7 @@
-import Screen from './Screen';
+import { Screen as _Screen, Navigator } from './Screen';
 import _ from 'lodash';
 
-export default class GolanceScreen extends Screen {
+class Screen extends _Screen {
 
   constructor(props) {
     super(props);
@@ -19,3 +19,8 @@ export default class GolanceScreen extends Screen {
     }
   }
 }
+
+export {
+  Screen,
+  Navigator,
+};
