@@ -2,7 +2,7 @@
 import React from 'react';
 import {AppRegistry} from 'react-native';
 import platformSpecific from './deprecated/platformSpecificDeprecated';
-import Screen from './GolanceScreen';
+import {Screen} from './GolanceScreen';
 
 import PropRegistry from './PropRegistry';
 
